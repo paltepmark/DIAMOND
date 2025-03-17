@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="tl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Form</title>
-    <style>
+       <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -53,35 +54,27 @@
 
     <div class="login-container">
         <h2>Maligayang Pagdating!</h2>
-        <form id="loginForm" onsubmit="return validateForm()">
-            <input type="text" id="username" placeholder="Email" required>
-            <input type="password" id="password" placeholder="Password" required>
+        <form action="login.php" method="POST">
+            <input type="text" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
             <input type="submit" value="Login">
             <div class="error" id="error-message"></div>
         </form>
     </div>
 
-    <script>
-        function validateForm() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const errorMessage = document.getElementById('error-message');
-
-            // Halimbawa ng tamang email at password
-            const validEmail = "user@example.com";
-            const validPassword = "password123";
-
-            if (username === validEmail && password === validPassword) {
-                // Kung tama ang email at password, magre-redirect
-                window.location.href = "https://paltepmark.github.io/DIAMOND/home.html";
-                return false; // Iwasan ang default form submission
-            } else {
-                // Kung mali, ipakita ang error message
-                errorMessage.textContent = "Maling email o password.";
-                return false; // Iwasan ang default form submission
-            }
-        }
-    </script>
-
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
