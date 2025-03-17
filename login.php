@@ -12,21 +12,10 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Kunin ang email at password mula sa form
-$email = $_POST['email'];
-$password = $_POST['password'];
+// Halimbawa ng pag-insert ng user
+$email = "user@example.com"; // Palitan ito ng email mula sa form
+$password = password_hash("password123", PASSWORD_DEFAULT); // I-hash ang password
 
-// Suriin ang user credentials
-$sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
-$result = $conn->query($sql);
+$sql = "INSERT INTO users (email, password) VALUES ('$email', '$password')";
 
-if ($result->num_rows > 0) {
-    // User found
-    echo "Maligayang pagdating, " . $email;
-} else {
-    // User not found
-    echo "Maling email o password.";
-}
-
-$conn->close();
-?>
+if ($conn->query($sql)
