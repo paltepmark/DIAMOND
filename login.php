@@ -1,4 +1,6 @@
 <?php
+session_start(); // Simulan ang session
+
 $servername = "localhost"; // o ang iyong server
 $username = "root"; // ang iyong database username
 $password = ""; // ang iyong database password
@@ -26,7 +28,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         // Suriin ang password
         if (password_verify($password, $row['password'])) {
-            echo "Login successful! Welcome, " . htmlspecialchars($username);
+            // I-set ang session variable
+            $_SESSION['username'] = $username;
+            header("Location: home.php"); // I-redirect sa home page
+            exit();
         } else {
             echo "Invalid password.";
         }
