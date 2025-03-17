@@ -26,14 +26,18 @@ if ($result->num_rows > 0) {
     
     // Suriin ang password gamit ang password_verify
     if (password_verify($password, $row['password'])) {
-        echo "Maligayang pagdating, " . $email;
-        // Dito, maaari kang mag-redirect sa ibang page
-        // header("Location: home.php"); // Halimbawa ng redirection
+        // Kung tama ang email at password, magre-redirect
+        header("Location: https://paltepmark.github.io/DIAMOND/home.html");
+        exit(); // Tiyakin na wala nang ibang output pagkatapos ng redirection
     } else {
-        echo "Maling email o password.";
+        // Kung mali ang password, magre-redirect sa login page na may error message
+        header("Location: https://paltepmark.github.io/DIAMOND/login.html?error=1");
+        exit();
     }
 } else {
-    echo "Maling email o password.";
+    // Kung walang user na natagpuan, magre-redirect sa login page na may error message
+    header("Location: https://paltepmark.github.io/DIAMOND/login.html?error=1");
+    exit();
 }
 
 $conn->close();
