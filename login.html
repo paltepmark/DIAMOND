@@ -19,6 +19,7 @@
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
         }
         h2 {
             text-align: center;
@@ -42,18 +43,45 @@
         input[type="submit"]:hover {
             background-color: #4cae4c;
         }
+        .error {
+            color: red;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
     <div class="login-container">
         <h2>Maligayang Pagdating!</h2>
-        <form action="https://paltepmark.github.io/DIAMOND/home.html" method="get">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
+        <form id="loginForm" onsubmit="return validateForm()">
+            <input type="text" id="username" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
             <input type="submit" value="Login">
+            <div class="error" id="error-message"></div>
         </form>
     </div>
+
+    <script>
+        function validateForm() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+
+            // Halimbawa ng tamang email at password
+            const validEmail = "user@example.com";
+            const validPassword = "password123";
+
+            if (username === validEmail && password === validPassword) {
+                // Kung tama ang email at password, magre-redirect
+                window.location.href = "https://paltepmark.github.io/DIAMOND/home.html";
+                return false; // Iwasan ang default form submission
+            } else {
+                // Kung mali, ipakita ang error message
+                errorMessage.textContent = "Maling email o password.";
+                return false; // Iwasan ang default form submission
+            }
+        }
+    </script>
 
 </body>
 </html>
